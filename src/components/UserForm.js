@@ -1,21 +1,45 @@
-import React, { useState } from 'react';
-import { TextField, Button, Grid } from '@mui/material';
+// src/components/ScheduleForm.js
 
-const UserForm = ({ addUser }) => {
+import React, { useState } from 'react';
+import { TextField, Button, Grid, MenuItem } from '@mui/material';
+
+const services = [
+  { value: 'lavagem-completa', label: 'Lavagem Completa' },
+  { value: 'higienizacao-interna', label: 'Higienização Interna' },
+  { value: 'polimento', label: 'Polimento' }
+];
+
+const paymentMethods = [
+  { value: 'pix', label: 'Pix' },
+  { value: 'cartao', label: 'Cartão de Crédito' },
+  { value: 'dinheiro', label: 'Dinheiro' }
+];
+
+const ScheduleForm = ({ addSchedule }) => {
   const [name, setName] = useState('');
+  const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [carModel, setCarModel] = useState(''); // Novo estado para o modelo do carro
-  const [placaCar, setplacaCar] = useState('');
+  const [carModel, setCarModel] = useState('');
+  const [placaCar, setPlacaCar] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [service, setService] = useState('');
+  const [payment, setPayment] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addUser({ name, email, phone, carModel, placaCar }); // Incluindo o modelo do carro ao adicionar o usuário
+    addSchedule({ name, cpf, email, phone, carModel, placaCar, date, time, service, payment });
     setName('');
+    setCpf('');
     setEmail('');
     setPhone('');
     setCarModel('');
-    setplacaCar('');
+    setPlacaCar('');
+    setDate('');
+    setTime('');
+    setService('');
+    setPayment('');
   };
 
   return (
@@ -28,6 +52,16 @@ const UserForm = ({ addUser }) => {
             fullWidth
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            label="CPF"
+            variant="outlined"
+            fullWidth
+            value={cpf}
+            onChange={(e) => setCpf(e.target.value)}
             required
           />
         </Grid>
@@ -67,13 +101,75 @@ const UserForm = ({ addUser }) => {
             variant="outlined"
             fullWidth
             value={placaCar}
-            onChange={(e) => setplacaCar(e.target.value)}
+            onChange={(e) => setPlacaCar(e.target.value)}
             required
           />
         </Grid>
         <Grid item xs={12}>
+          <TextField
+            label="Data"
+            type="date"
+            variant="outlined"
+            fullWidth
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            required
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            label="Hora"
+            type="time"
+            variant="outlined"
+            fullWidth
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            required
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            label="Serviço"
+            select
+            variant="outlined"
+            fullWidth
+            value={service}
+            onChange={(e) => setService(e.target.value)}
+            required
+          >
+            {services.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            label="Forma de Pagamento"
+            select
+            variant="outlined"
+            fullWidth
+            value={payment}
+            onChange={(e) => setPayment(e.target.value)}
+            required
+          >
+            {paymentMethods.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+        <Grid item xs={12}>
           <Button variant="contained" color="primary" type="submit" fullWidth>
-            Cadastrar
+            Agendar
           </Button>
         </Grid>
       </Grid>
@@ -81,4 +177,4 @@ const UserForm = ({ addUser }) => {
   );
 };
 
-export default UserForm;
+export default ScheduleForm;

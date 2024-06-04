@@ -1,14 +1,16 @@
 // src/App.js
 
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScheduleForm from './components/ScheduleForm';
 import ScheduleList from './components/ScheduleList';
 import Home from './components/Home';
 import UserForm from './components/UserForm'; // Importe o componente
-import { CssBaseline, Container, Box, Button, Typography } from '@mui/material';
+import ContateNos from './components/ContateNos'; // Importe o componente
+import Sobre from './components/Sobre'; // Importe o componente
+import { CssBaseline, Container, Box, Typography } from '@mui/material';
 import './App.css';
 
 const App = () => {
@@ -28,36 +30,11 @@ const App = () => {
     setErrorMessage('');
   };
 
-  const addUser = (user) => {
-    setUsers([...users, user]);
-  };
-
-  const [authenticated, setAuthenticated] = useState(false);
-
-  const login = () => {
-    // Lógica para autenticar o usuário
-    setAuthenticated(true);
-  };
-  
-
-
   return (
     <Router>
       <CssBaseline />
       <Header />
       <Container>
-        <Box my={4} display="flex" justifyContent="flex-end">
-        <Button
-            variant="contained"
-            color="primary"
-            component={Link}
-            to={authenticated ? "/agendar" : "/cadastrar"}
-            disabled={!authenticated}
-        >
-            Agendar Lavagem
-        </Button>
-
-        </Box>
         {errorMessage && <Typography variant="body2" color="error">{errorMessage}</Typography>}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -65,18 +42,26 @@ const App = () => {
             path="/agendar"
             element={
               <Box my={4}>
-                <ScheduleForm addSchedule={addSchedule} />
+                <UserForm addUser={addSchedule} />
                 <ScheduleList schedules={schedules} />
               </Box>
             }
           />
           <Route
-            path="/cadastrar"
+            path="/consultar"
             element={
               <Box my={4}>
-                <UserForm addUser={addUser} />
+                <ScheduleList schedules={schedules} />
               </Box>
             }
+          />
+          <Route
+            path="/contate-nos"
+            element={<ContateNos />}
+          />
+          <Route
+            path="/sobre"
+            element={<Sobre />}
           />
         </Routes>
         {/* Espaçamento extra para empurrar o footer para cima */}

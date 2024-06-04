@@ -1,62 +1,51 @@
 // src/components/Home.js
-import React from 'react';
-import { Box, Typography, Card, CardContent, Grid } from '@mui/material';
 
-const Home = () => {
-  return (
-    <Box sx={{ padding: 3 }}>
-      <Typography variant="h3" gutterBottom>
-        Nosso trabalho!
-      </Typography>
-      <Grid container spacing={4}>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <CardContent sx={{ flexGrow: 1 }}>
-              <Typography variant="h4" align="center">Lavagem Completa</Typography>
-              <Box sx={{ height: 16 }} />
-              <Box display="flex" justifyContent="center" alignItems="center" sx={{ marginBottom: 2 }}>
-                <img src="/carro-sujo-limpo.jpg" alt="Imagem 1" style={{ width: '200px', height: '200px', borderRadius: '50%', objectFit: 'cover' }} />
-              </Box>
-              <Typography variant="body1" align="center">
-                Garantimos a limpeza detalhada de todas as partes do seu veículo, 
-                proporcionando um brilho e frescor inigualáveis.
+import React from 'react';
+import { Container, Typography, Grid, Card, CardContent, Box } from '@mui/material';
+
+const services = [
+  {
+    title: 'Lavagem Completa',
+    image: '/carro-sujo-limpo.jpg',
+    description: 'Lavagem completa do carro, por dentro e por fora.'
+  },
+  {
+    title: 'Polimento',
+    image: '/polimento-antes-depois.jpg',
+    description: 'Polimento para deixar seu carro brilhando como novo.'
+  },
+  {
+    title: 'Higienização Interna',
+    image: '/interno-antes-depois.jpg',
+    description: 'Higienização completa do interior do carro.'
+  },
+];
+
+const Home = () => (
+  <Container>
+    <Typography variant="h2" align="center" gutterBottom style={{ marginTop: 70, marginBottom: 70 }}>
+      Nossos serviços!
+    </Typography>
+    <Grid container spacing={4}>
+      {services.map((service, index) => (
+        <Grid item xs={12} md={4} key={index}>
+          <Card style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <Box display="flex" justifyContent="center" alignItems="center" style={{ height: 200 }}>
+              <img src={service.image} alt={service.title} style={{ maxHeight: '100%', maxWidth: '100%', borderRadius: 10 }} />
+            </Box>
+            <CardContent style={{ flexGrow: 1 }}>
+              <Typography variant="h5" align="center" gutterBottom>
+                {service.title}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" align="center">
+                {service.description}
               </Typography>
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <CardContent sx={{ flexGrow: 1 }}>
-              <Typography variant="h4" align="center">Higienização Interna</Typography>
-              <Box sx={{ height: 16 }} />
-              <Box display="flex" justifyContent="center" alignItems="center" sx={{ marginBottom: 2 }}>
-                <img src="/interno-antes-depois.jpg" alt="Imagem 2" style={{ width: '200px', height: '200px', borderRadius: '50%', objectFit: 'cover' }} />
-              </Box>
-              <Typography variant="body1" align="center">
-                Limpeza minuciosa do interior do seu veículo, removendo todas as 
-                sujeiras e odores para um ambiente agradável e higiênico.
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <CardContent sx={{ flexGrow: 1 }}>
-              <Typography variant="h4" align="center">Polimento</Typography>
-              <Box sx={{ height: 16 }} />
-              <Box display="flex" justifyContent="center" alignItems="center" sx={{ marginBottom: 2 }}>
-                <img src="/polimento-antes-depois.jpg" alt="Imagem 3" style={{ width: '200px', height: '200px', borderRadius: '50%', objectFit: 'cover' }} />
-              </Box>
-              <Typography variant="body1" align="center">
-                Polimento de alta qualidade para restaurar o brilho e proteger a 
-                pintura do seu carro contra elementos externos.
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
-    </Box>
-  );
-};
+      ))}
+    </Grid>
+  </Container>
+);
 
 export default Home;
