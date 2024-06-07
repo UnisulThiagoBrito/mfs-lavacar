@@ -15,7 +15,7 @@ const Header = () => (
       </Typography>
       <div>
         <Button color="inherit" component={Link} to="/cadastrar" style={{ textDecoration: 'none', color: 'inherit', flexGrow: 1, fontSize: '1rem' }}>Agende seu Horário</Button>
-        <Button color="inherit" component={Link} to="/consultar-horario" style={{ textDecoration: 'none', color: 'inherit', flexGrow: 1, fontSize: '1rem' }}>Consultar Horário</Button> {/* Botão Consultar Horário */}
+        <Button color="inherit" component={Link} to="/consultar-horario" style={{ textDecoration: 'none', color: 'inherit', flexGrow: 1, fontSize: '1rem' }}>Consultar Horário</Button>
         <Button color="inherit" component={Link} to="/contate-nos" style={{ textDecoration: 'none', color: 'inherit', flexGrow: 1, fontSize: '1rem' }}>Contate-nos</Button>
         <Button color="inherit" component={Link} to="/sobre" style={{ textDecoration: 'none', color: 'inherit', flexGrow: 1, fontSize: '1rem' }}>Sobre</Button>
       </div>
