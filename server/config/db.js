@@ -24,3 +24,25 @@ pool.getConnection((err, connection) => {
 });
 
 module.exports = pool.promise();
+
+
+
+// CREATE DATABASE `mfs_lavacar`; 
+
+
+// USE mfs_lavacar;
+
+// CREATE TABLE schedules (
+//     id INT AUTO_INCREMENT PRIMARY KEY,
+//     name VARCHAR(255) NOT NULL,
+//     cpf VARCHAR(14) NOT NULL,
+//     email VARCHAR(255) NOT NULL,
+//     phone VARCHAR(20) NOT NULL,
+//     carModel VARCHAR(255) NOT NULL,
+//     placaCar VARCHAR(20) NOT NULL,
+//     date DATE NOT NULL,
+//     time TIME NOT NULL,
+//     service VARCHAR(50) NOT NULL,
+//     payment VARCHAR(50) NOT NULL
+// );
+
