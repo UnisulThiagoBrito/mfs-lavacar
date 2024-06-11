@@ -11,7 +11,7 @@ class Schedule {
   }
 
   static async findByCPF(cpf) {
-    const [rows] = await db.execute('SELECT * FROM agendamentos WHERE cpf = ?', [cpf]);
+    const [rows] = await db.execute('SELECT * FROM schedules WHERE cpf = ?', [cpf]);
     return rows;
   }
 }
