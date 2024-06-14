@@ -8,6 +8,7 @@ import ContateNos from './components/ContateNos';
 import ScheduleForm from './components/ScheduleForm';
 import ScheduleList from './components/ScheduleList';
 import Footer from './components/Footer';
+import Sobre from './components/Sobre'; 
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
         <Route path="/cadastrar" element={<ScheduleForm />} />
         <Route path="/consultar-horario" element={<ScheduleList />} />
         <Route path="/contate-nos" element={<ContateNos />} />
-        <Route path="/sobre" element={<div>Sobre</div>} />
+        <Route path="/sobre" element={<div><Sobre/></div>} />
       </Routes>
       <Footer />
     </Router>
